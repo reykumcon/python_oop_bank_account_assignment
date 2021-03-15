@@ -20,10 +20,14 @@ class BankAccount:
         return self
 
     def yield_interest(self):
-        self.balance += self.balance * (self.int_rate / 100)
+        if self.balance > 0:
+            self.balance += self.balance * (self.int_rate / 100)
+        else:
+            print("No yield interest")
         return self
 
-alice = BankAccount(10, 100)
-alice.display_account_info()
-alice.withdraw(200).display_account_info()
-alice.yield_interest().display_account_info()
+account_1 = BankAccount(10, 100)
+account_2 = BankAccount(10, 200)
+
+account_1.deposit(10).deposit(10).deposit(10).withdraw(20).yield_interest().display_account_info()
+account_2.deposit(20).deposit(20).withdraw(40).withdraw(40).withdraw(40).withdraw(40).yield_interest().display_account_info()
